@@ -12,13 +12,13 @@ Aplikacja na której można wyszukiwać zarejestrowane w Polsce leki oraz przegl
 1. wyszukiwarka leków po nazwie lub substancji czynnej
 2. strona leku na której można:
 
+- zobaczyć szczegóły
 - zobaczyć oceny i recenzje leku
 - napisać recenzję
-- zobaczyć odnośniki do innych leków z taką samą substancją czynną
 
 ## Uruchomienie projektu
 
-Po sklonowaniu repozytorium użyć:
+Po sklonowaniu repozytorium:
 
 ```
 npm i
