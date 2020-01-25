@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 
 import store from "./redux/store";
 
-import Search from "./components/Search";
-import Product from "./components/Product";
+import Search from "./components/search/Search";
+import Product from "./components/product/Product";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Search} />
-          <Route exact path="/product/:id?" component={Product} />
+          <Route exact path="/product/:documentId" component={Product} />
           <Route component={Search} />
         </Switch>
       </Router>

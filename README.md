@@ -21,16 +21,10 @@ Aplikacja na której można wyszukiwać zarejestrowane w Polsce leki oraz przegl
 Po sklonowaniu repozytorium:
 
 ```
-npm i
+yarn
 ```
 
 Do uruchomienia aplikacji:
-
-```
-npm start
-```
-
-lub
 
 ```
 yarn start

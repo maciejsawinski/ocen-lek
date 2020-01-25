@@ -1,0 +1,49 @@
+import firebaseDb from "../../firebase";
+
+const PRODUCT_FETCHING = "PRODUCT_FETCHING";
+const PRODUCT_FETCHED = "PRODUCT_FETCHED";
+const PRODUCT_FETCHING_ERROR = "PRODUCT_FETCHING_ERROR";
+
+const productFetching = () => ({
+  type: PRODUCT_FETCHING
+});
+
+const productFetched = product => ({
+  type: PRODUCT_FETCHED,
+  payload: {
+    product
+  }
+});
+
+const productFetchingError = error => ({
+  type: PRODUCT_FETCHING_ERROR,
+  payload: {
+    error
+  }
+});
+
+const getProduct = documentId => dispatch => {
+  dispatch(productFetching());
+
+  firebaseDb
+    .collection("products")
+    .doc(documentId)
+    .get()
+    .then(doc => {
+      dispatch(productFetched(doc.data()));
+    })
+    .catch(error => {
+      console.log("Error getting document:", error);
+      dispatch(productFetchingError());
+    });
+};
+
+export {
+  PRODUCT_FETCHING,
+  PRODUCT_FETCHED,
+  PRODUCT_FETCHING_ERROR,
+  productFetching,
+  productFetched,
+  productFetchingError,
+  getProduct
+};
