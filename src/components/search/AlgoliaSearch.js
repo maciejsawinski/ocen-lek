@@ -47,8 +47,6 @@ const searchClient = {
 };
 
 const StateResults = ({ searchResults, error }) => {
-  console.log(searchResults);
-
   if (error) {
     return <p>Coś poszło nie tak</p>;
   }

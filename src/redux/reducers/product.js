@@ -7,7 +7,7 @@ import {
 const initialState = {
   isLoading: false,
   error: false,
-  product: {}
+  productDetails: {}
 };
 
 const product = (state = initialState, { type, payload }) => {
@@ -25,11 +25,11 @@ const product = (state = initialState, { type, payload }) => {
         activeSubstances,
         quantities,
         types
-      } = payload.product;
+      } = payload.productDetails;
       return {
         isLoading: false,
         error: false,
-        product: {
+        productDetails: {
           id,
           name,
           companies,

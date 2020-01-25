@@ -8,10 +8,10 @@ const productFetching = () => ({
   type: PRODUCT_FETCHING
 });
 
-const productFetched = product => ({
+const productFetched = productDetails => ({
   type: PRODUCT_FETCHED,
   payload: {
-    product
+    productDetails
   }
 });
 

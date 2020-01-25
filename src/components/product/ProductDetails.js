@@ -7,7 +7,7 @@ class ProductDetails extends Component {
   }
 
   render() {
-    const { error, isLoading, product } = this.props;
+    const { error, isLoading, productDetails } = this.props;
 
     if (error) {
       return (
@@ -23,7 +23,10 @@ class ProductDetails extends Component {
         </section>
       );
     }
-    if (Object.keys(product).length !== 0 && product.constructor === Object) {
+    if (
+      Object.keys(productDetails).length !== 0 &&
+      productDetails.constructor === Object
+    ) {
       const {
         id,
         name,
@@ -31,27 +34,27 @@ class ProductDetails extends Component {
         activeSubstances,
         quantities,
         types
-      } = product;
+      } = productDetails;
       return (
         <section>
           <h2>
             {name} {id}
           </h2>
-          <p>Substancje czynne:</p>>
-          {activeSubstances.map(activeSubstance => (
-            <p>{activeSubstance}</p>
+          <p>Substancje czynne:</p>
+          {activeSubstances.map((activeSubstance, index) => (
+            <p key={index}>{activeSubstance}</p>
           ))}
-          <p>Dawki:</p>>
-          {quantities.map(quantity => (
-            <p>{quantity}</p>
+          <p>Dawki:</p>
+          {quantities.map((quantity, index) => (
+            <p key={index}>{quantity}</p>
           ))}
-          <p>Typy:</p>>
-          {types.map(type => (
-            <p>{type}</p>
+          <p>Typy:</p>
+          {types.map((type, index) => (
+            <p key={index}>{type}</p>
           ))}
-          <p>Producenci:</p>>
-          {companies.map(company => (
-            <p>{company}</p>
+          <p>Producenci:</p>
+          {companies.map((company, index) => (
+            <p key={index}>{company}</p>
           ))}
         </section>
       );
@@ -64,7 +67,7 @@ class ProductDetails extends Component {
 ProductDetails.propTypes = {
   error: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  product: PropTypes.object.isRequired,
+  productDetails: PropTypes.object.isRequired,
   getProduct: PropTypes.func.isRequired
 };
 
