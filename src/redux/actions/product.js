@@ -42,8 +42,5 @@ export {
   PRODUCT_FETCHING,
   PRODUCT_FETCHED,
   PRODUCT_FETCHING_ERROR,
-  productFetching,
-  productFetched,
-  productFetchingError,
   getProduct
 };

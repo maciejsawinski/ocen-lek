@@ -7,7 +7,8 @@ import {
 const initialState = {
   isLoading: false,
   error: false,
-  productDetails: {}
+  productDetails: {},
+  productReviews: []
 };
 
 const product = (state = initialState, { type, payload }) => {
@@ -24,7 +25,8 @@ const product = (state = initialState, { type, payload }) => {
         companies,
         activeSubstances,
         quantities,
-        types
+        types,
+        reviews
       } = payload.productDetails;
       return {
         isLoading: false,
@@ -36,7 +38,8 @@ const product = (state = initialState, { type, payload }) => {
           activeSubstances,
           quantities,
           types
-        }
+        },
+        productReviews: reviews
       };
     case PRODUCT_FETCHING_ERROR:
       return {

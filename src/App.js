@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 import Search from "./components/search/Search";
-import Product from "./components/product/Product";
+import Product from "./containers/product/Product";
 
 function App() {
   return (
