@@ -4,7 +4,7 @@ import { addReview } from "../../redux/actions/review";
 
 import ProductAddReview from "../../components/product/ProductAddReview";
 
-const mapState = ({ documentId }) => {
+const mapState = (_, { documentId }) => {
   return {
     documentId
   };

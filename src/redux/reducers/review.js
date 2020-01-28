@@ -9,7 +9,7 @@ const initialState = {
   error: false
 };
 
-const review = (state = initialState, { type, payload }) => {
+const review = (state = initialState, { type }) => {
   switch (type) {
     case REVIEW_POSTING:
       return {
@@ -18,7 +18,7 @@ const review = (state = initialState, { type, payload }) => {
       };
     case REVIEW_POSTED:
       return {
-        state
+        ...initialState
       };
     case REVIEW_POSTING_ERROR:
       return {

@@ -1,4 +1,4 @@
-import firebaseDb from "../../firebase";
+import { firebaseDb } from "../../firebase";
 
 const PRODUCT_FETCHING = "PRODUCT_FETCHING";
 const PRODUCT_FETCHED = "PRODUCT_FETCHED";
@@ -25,7 +25,7 @@ const productFetchingError = error => ({
 const getProduct = documentId => dispatch => {
   dispatch(productFetching());
 
-  firebaseDb
+  return firebaseDb
     .collection("products")
     .doc(documentId)
     .get()

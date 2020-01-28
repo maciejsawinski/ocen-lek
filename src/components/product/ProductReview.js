@@ -3,15 +3,16 @@ import PropTypes from "prop-types";
 
 const ProductReview = ({ review }) => {
   const {
-    dateAdded,
+    // dateAdded,
     text,
     userId,
+    userName,
     rating: { availability, effectiveness, price, sideEffects }
   } = review;
   return (
     <article>
       <p>
-        {dateAdded} - {userId}
+        data - {userId} - {userName}
       </p>
       <div>
         Oceny:

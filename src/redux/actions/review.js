@@ -1,4 +1,6 @@
-import firebaseDb from "../../firebase";
+import { getProduct } from "./product";
+
+import { firebase, firebaseDb } from "../../firebase";
 
 const REVIEW_POSTING = "REVIEW_POSTING";
 const REVIEW_POSTED = "REVIEW_POSTED";
@@ -8,11 +10,8 @@ const reviewPosting = () => ({
   type: REVIEW_POSTING
 });
 
-const reviewPosted = review => ({
-  type: REVIEW_POSTED,
-  payload: {
-    review
-  }
+const reviewPosted = () => ({
+  type: REVIEW_POSTED
 });
 
 const reviewPostingError = error => ({
@@ -25,17 +24,23 @@ const reviewPostingError = error => ({
 const addReview = (documentId, review) => dispatch => {
   dispatch(reviewPosting());
 
-  /*firebaseDb
+  return firebaseDb
     .collection("products")
     .doc(documentId)
-    .get()
-    .then(doc => {
-      dispatch(reviewPosted(doc.data()));
+    .update({
+      reviews: firebase.firestore.FieldValue.arrayUnion({
+        ...review,
+        dateAdded: firebase.firestore.Timestamp.fromDate(new Date())
+      })
+    })
+    .then(() => {
+      dispatch(reviewPosted());
+      dispatch(getProduct(documentId));
     })
     .catch(error => {
       console.log("Error adding review:", error);
       dispatch(reviewPostingError());
-    });*/
+    });
 };
 
 export { REVIEW_POSTING, REVIEW_POSTED, REVIEW_POSTING_ERROR, addReview };
