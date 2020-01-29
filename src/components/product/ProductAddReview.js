@@ -24,6 +24,17 @@ class ProductAddReview extends Component {
     e.preventDefault();
 
     this.props.addReview(this.props.documentId, this.state);
+
+    this.setState({
+      text: "",
+      userName: "",
+      rating: {
+        availability: 0,
+        effectiveness: 0,
+        price: 0,
+        sideEffects: 0
+      }
+    });
   }
 
   render() {

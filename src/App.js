@@ -7,6 +7,8 @@ import store from "./redux/store";
 import Search from "./components/search/Search";
 import Product from "./containers/product/Product";
 
+import "./App.scss";
+
 function App() {
   return (
     <Provider store={store}>

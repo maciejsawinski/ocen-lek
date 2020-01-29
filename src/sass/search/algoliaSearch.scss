@@ -1,0 +1,106 @@
+.ais-SearchBox .ais-SearchBox-form {
+  padding: 0 1rem;
+  border: 2px solid white;
+  border-radius: 1rem;
+  background-color: white;
+  color: $textColor;
+
+  &:focus-within {
+    border: 2px solid $primaryColor;
+  }
+
+  .ais-SearchBox-input {
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+  }
+
+  .ais-SearchBox-reset {
+    border: none;
+    background-color: white;
+    color: $textColor;
+  }
+  
+  .ais-SearchBox-submit {
+    display: none;
+  }
+}
+
+.ais-Hits {
+  margin-top: 2rem;
+  width: 75%;
+
+  .ais-Hits-list {
+    list-style: none;
+    
+    .ais-Hits-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 1rem auto;
+      padding: 1rem 2rem;
+      border: 1px solid $primaryColor;
+      box-shadow: 
+      0 5px 5px -5px rgba($primaryColor, 0.15),
+      0 10px 10px -5px rgba($primaryColor, 0.15),
+      0 15px 15px -5px rgba($primaryColor, 0.15),
+      0 20px 20px -5px rgba($primaryColor, 0.15);
+      background-color: white;
+
+      .search-hit-title {
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 2rem;
+        color: $textColor;
+
+        .ais-Highlight-highlighted {
+          background-color: $secondaryColor;
+          font-style: normal;
+        }
+      }
+
+      .search-hit-activesubstance {
+        display: flex;
+        flex-direction: column;
+
+        .search-hit-activesubstance-title {
+          font-style: italic;
+          font-weight: bold;
+        }
+
+        .ais-Highlight-highlighted {
+          background-color: $secondaryColor;
+          font-style: normal;
+        }
+      }
+    }
+  }
+}
+
+.ais-Pagination .ais-Pagination-list {
+  display: flex;
+  margin: 2rem auto;
+  list-style: none;
+
+  .ais-Pagination-item > a {
+    @include paginationItem;
+  }
+
+  .ais-Pagination-item > span {
+    @include paginationItem(lightgray);
+  }
+
+  .ais-Pagination-item--selected > a {
+    @include paginationItem($secondaryColor);
+  }
+}
+
+@media(max-width: 768px) {
+  .ais-Hits {
+    width: 100%;
+  }
+
+  .search-hit-title, .search-hit-activesubstance > p {
+    word-break: break-all;
+  } 
+}

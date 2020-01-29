@@ -1,0 +1,17 @@
+@mixin boxShadow {
+  box-shadow: 
+      0 5px 5px -5px rgba($primaryColor, 0.15),
+      0 10px 10px -5px rgba($primaryColor, 0.15),
+      0 15px 15px -5px rgba($primaryColor, 0.15),
+      0 20px 20px -5px rgba($primaryColor, 0.15);
+}
+
+@mixin paginationItem($background : $primaryColor) {
+  margin: auto 0.5rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-size: 2rem;
+  background-color: $background;
+  color: $backgroundColor;
+  @include boxShadow;
+}
