@@ -66,7 +66,7 @@ const searchBox = {
 
 const StateResults = ({ searchResults, error }) => {
   if (error) {
-    return <p>Coś poszło nie tak</p>;
+    return <h2 className="search-error">Jesteś offline</h2>;
   }
 
   if (searchResults && searchResults.query === null) {
@@ -79,7 +79,7 @@ const StateResults = ({ searchResults, error }) => {
 
   if (searchResults && searchResults.query)
     if (searchResults.nbHits === 0 && searchResults.query.length > 0) {
-      return <p>Nic nie znaleziono</p>;
+      return <h2 className="search-nomatches">Brak wyników</h2>;
     }
 
   return null;

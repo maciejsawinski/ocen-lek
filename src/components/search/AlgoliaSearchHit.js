@@ -15,9 +15,6 @@ const AlgoliaSearchHit = ({ hit }) => {
         />
       </Link>
       <div className="search-hit-activesubstance">
-        <span className="search-hit-activesubstance-title">
-          Substancje czynne:
-        </span>
         {hit.activeSubstances.map((_, index) => (
           <p key={index}>
             <Highlight attribute={`activeSubstances.${index}`} hit={hit} />

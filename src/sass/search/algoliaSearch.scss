@@ -1,29 +1,47 @@
 .ais-SearchBox .ais-SearchBox-form {
-  padding: 0 1rem;
-  border: 2px solid white;
-  border-radius: 1rem;
-  background-color: white;
-  color: $textColor;
+  @include boxShadow;
+  display: flex;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid $backgroundColor;
+  background-color: $backgroundSecondaryColor;
 
   &:focus-within {
-    border: 2px solid $primaryColor;
-  }
-
-  .ais-SearchBox-input {
-    padding: 0.5rem 1rem;
-    border: none;
-    outline: none;
-    font-size: 2rem;
-  }
+      border: 1px solid $secondaryColor;
+    }
 
   .ais-SearchBox-reset {
     border: none;
-    background-color: white;
-    color: $textColor;
+    background-color: $backgroundSecondaryColor;
+  }
+
+  .ais-SearchBox-input {
+    outline: none;
+    border: none;
+    font-size: 2rem;
+    background-color: $backgroundSecondaryColor;
   }
   
   .ais-SearchBox-submit {
     display: none;
+  }
+}
+
+.search-error {
+  margin-top: 2rem;
+  
+  &::after {
+    font-family: 'iconmonstr-iconic-font';
+    content: '  \e0f5';
+  }
+}
+
+.search-nomatches {
+  margin-top: 2rem;
+  
+  &::after {
+    font-family: 'iconmonstr-iconic-font';
+    content: '  \e05a';
   }
 }
 
@@ -36,25 +54,24 @@
     
     .ais-Hits-item {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       margin: 1rem auto;
       padding: 1rem 2rem;
-      border: 1px solid $primaryColor;
-      box-shadow: 
-      0 5px 5px -5px rgba($primaryColor, 0.15),
-      0 10px 10px -5px rgba($primaryColor, 0.15),
-      0 15px 15px -5px rgba($primaryColor, 0.15),
-      0 20px 20px -5px rgba($primaryColor, 0.15);
-      background-color: white;
 
       .search-hit-title {
-        text-decoration: none;
-        font-weight: bold;
         font-size: 2rem;
+        font-weight: bold;
+        text-decoration: none;
         color: $textColor;
 
+        &::before {
+          font-family: 'iconmonstr-iconic-font';
+          font-size: 1.6rem;
+          content: '\e04b  ';
+        }
+
         .ais-Highlight-highlighted {
-          background-color: $secondaryColor;
+          @include underline; 
           font-style: normal;
         }
       }
@@ -63,13 +80,8 @@
         display: flex;
         flex-direction: column;
 
-        .search-hit-activesubstance-title {
-          font-style: italic;
-          font-weight: bold;
-        }
-
         .ais-Highlight-highlighted {
-          background-color: $secondaryColor;
+          @include underline; 
           font-style: normal;
         }
       }
@@ -87,20 +99,16 @@
   }
 
   .ais-Pagination-item > span {
-    @include paginationItem(lightgray);
+    @include paginationItem($backgroundSecondaryColor);
   }
 
   .ais-Pagination-item--selected > a {
-    @include paginationItem($secondaryColor);
+    @include paginationItem(lighten($secondaryColor,30));
   }
 }
 
 @media(max-width: 768px) {
   .ais-Hits {
-    width: 100%;
+    width: 95%;
   }
-
-  .search-hit-title, .search-hit-activesubstance > p {
-    word-break: break-all;
-  } 
 }
