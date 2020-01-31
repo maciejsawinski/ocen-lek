@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import ProductReviewsLoader from "./loader/ProductReviewsLoader";
+import RatingStatic from "../layout/RatingStatic";
 import ProductReview from "./ProductReview";
 
 const pushRatings = (ratings, rating) => {
@@ -22,15 +24,22 @@ const calculateAverage = ratings => {
 const ProductReviews = ({ error, isLoading, productReviews }) => {
   if (error) {
     return (
-      <section>
-        <p>Coś poszło nie tak</p>
+      <section className="product-reviews">
+        <h2 className="product-reviews-error">Błąd połączenia</h2>
       </section>
     );
   }
   if (isLoading) {
     return (
-      <section>
-        <p>Ładowanie</p>
+      <section className="product-reviews">
+        <ProductReviewsLoader />
+      </section>
+    );
+  }
+  if (typeof productReviews === "undefined") {
+    return (
+      <section className="product-reviews">
+        <h2 className="product-reviews-nomatches">Brak ocen</h2>
       </section>
     );
   }
@@ -47,18 +56,43 @@ const ProductReviews = ({ error, isLoading, productReviews }) => {
     });
 
     return (
-      <section>
-        <h2>Oceny</h2>
-        <ul>
-          <li>dostępność: {calculateAverage(ratings.availability)}</li>
-          <li>skuteczność: {calculateAverage(ratings.effectiveness)}</li>
-          <li>cena: {calculateAverage(ratings.price)}</li>
-          <li>skutki uboczne: {calculateAverage(ratings.sideEffects)}</li>
-          <li>średnia ocen: {calculateAverage(ratings.overall)}</li>
+      <section className="product-reviews">
+        <h2 className="product-reviews-title">Oceny</h2>
+        <ul className="product-reviews-rating-list">
+          <li>
+            <div className="product-reviews-rating-list-subtitle">
+              Dostępność:
+            </div>
+            <RatingStatic rating={calculateAverage(ratings.availability)} />
+          </li>
+          <li>
+            <div className="product-reviews-rating-list-subtitle">
+              Skuteczność:
+            </div>
+            <RatingStatic rating={calculateAverage(ratings.effectiveness)} />
+          </li>
+          <li>
+            <div className="product-reviews-rating-list-subtitle">Cena:</div>
+            <RatingStatic rating={calculateAverage(ratings.price)} />
+          </li>
+          <li>
+            <div className="product-reviews-rating-list-subtitle">
+              Skutki uboczne:
+            </div>
+            <RatingStatic rating={calculateAverage(ratings.sideEffects)} />
+          </li>
+          <li>
+            <div className="product-reviews-rating-list-subtitle">
+              Średnia ocen:
+            </div>
+            <RatingStatic rating={calculateAverage(ratings.overall)} />
+          </li>
         </ul>
-        {productReviews.map((review, index) => {
-          return <ProductReview key={index} review={review} />;
-        })}
+        <div className="product-reviews-container">
+          {productReviews.map((review, index) => {
+            return <ProductReview key={index} review={review} />;
+          })}
+        </div>
       </section>
     );
   }
@@ -69,7 +103,7 @@ const ProductReviews = ({ error, isLoading, productReviews }) => {
 ProductReviews.propTypes = {
   error: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  productReviews: PropTypes.array.isRequired
+  productReviews: PropTypes.array
 };
 
 export default ProductReviews;

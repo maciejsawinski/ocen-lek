@@ -1,0 +1,16 @@
+.header {
+  height: 6rem;
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $primaryColor;
+  
+  a { 
+  text-decoration: none;
+
+    .header-title {
+    margin-left: 2rem;
+    color: $backgroundColor;
+    }
+  }
+}

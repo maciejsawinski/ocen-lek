@@ -39,7 +39,7 @@ class ProductAddReview extends Component {
 
   render() {
     return (
-      <section>
+      <section className="product-add-review">
         <form onSubmit={e => this.onSubmit(e)}>
           <div>dostępność:</div>
           <div>skuteczność:</div>

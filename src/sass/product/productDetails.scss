@@ -1,0 +1,20 @@
+.product-details {
+  .product-details-error {
+    text-align: center;
+    font-weight: normal;
+    
+    &::after {
+      font-family: 'iconmonstr-iconic-font';
+      content: '  \e0f5';
+    }
+  }
+
+  .product-details-title {
+    text-align: center;
+  }
+
+  .product-details-subtitle {
+    @include underline;
+    font-weight: bold;
+  }
+}

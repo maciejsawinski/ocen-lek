@@ -14,13 +14,15 @@ class Product extends Component {
 
   render() {
     return (
-      <>
+      <div className="product">
         <Header />
-        <ProductDetails />
-        <ProductAddReview documentId={this.props.documentId} />
-        <ProductReviews />
+        <div className="product-container">
+          <ProductDetails />
+          <ProductAddReview documentId={this.props.documentId} />
+          <ProductReviews />
+        </div>
         <Footer />
-      </>
+      </div>
     );
   }
 }

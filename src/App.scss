@@ -1,10 +1,16 @@
 @import "./sass/reset";
-@import "./sass/font";
+@import "./sass/fonts";
 @import "./sass/variables";
 @import "./sass/mixins";
 @import "./sass/misc";
 
+@import "./sass/layout/header";
 @import "./sass/layout/footer";
 
 @import "./sass/search/search";
 @import "./sass/search/algoliaSearch";
+
+@import "./sass/product/product";
+@import "./sass/product/productDetails";
+@import "./sass/product/productAddReview";
+@import "./sass/product/productReviews";

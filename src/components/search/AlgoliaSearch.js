@@ -66,7 +66,7 @@ const searchBox = {
 
 const StateResults = ({ searchResults, error }) => {
   if (error) {
-    return <h2 className="search-error">Jesteś offline</h2>;
+    return <h2 className="search-error">Błąd połącznia</h2>;
   }
 
   if (searchResults && searchResults.query === null) {
