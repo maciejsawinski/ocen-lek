@@ -1,22 +1,42 @@
-@mixin underline {
+@mixin underline($thickness: 0.75rem) {
   text-decoration: underline;
-  text-decoration-thickness: 1rem;
+  text-decoration-thickness: $thickness;
   text-underline-offset: -0.3rem;
   text-decoration-skip-ink: none;
   text-decoration-color: $secondaryColor;
 }
 
 @mixin boxShadow {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  box-shadow: 0 0.1rem 0.3rem rgba(0,0,0,0.12), 0 0.1rem 0.2rem rgba(0,0,0,0.24);
 }
 
 @mixin paginationItem($background : $secondaryColor) {
   @include boxShadow;
   margin: auto 0.5rem;
-  padding: 0.2rem 1rem;
+  padding: 0.6rem 1rem;
   border-radius: 0.2rem;
   text-decoration: none;
   background-color: $background;
   color: $textColor;
+}
+
+@mixin button {
+  @include boxShadow;
+  outline: none;
+  border: 0.1rem solid $secondaryColor;
+  padding: 1rem 3rem;
+  border-radius: 0.2rem;
+  color: $backgroundColor;
+  font-weight: bold;
+  background-color: $secondaryColor;
+  transition: .25s ease-in;
+
+  &:hover {
+    background-color: lighten($secondaryColor,5);
+  }
+
+  &:active {
+    background-color: darken($secondaryColor,10);
+    border: 0.1rem solid darken($secondaryColor,15);
+  }
 }

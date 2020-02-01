@@ -7,8 +7,8 @@
   background-color: $backgroundSecondaryColor;
 
   &:focus-within {
-      border: 1px solid $secondaryColor;
-    }
+    border: 1px solid $secondaryColor;
+  }
 
   .ais-SearchBox-reset {
     border: none;
@@ -20,6 +20,10 @@
     border: none;
     font-size: 2rem;
     background-color: $backgroundSecondaryColor;
+
+    &::-webkit-search-cancel-button{
+      display: none;   
+  }
   }
   
   .ais-SearchBox-submit {
@@ -103,7 +107,7 @@
   }
 
   .ais-Pagination-item--selected > a {
-    @include paginationItem(lighten($secondaryColor,30));
+    @include paginationItem(lighten($secondaryColor,20));
   }
 }
 

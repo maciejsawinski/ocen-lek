@@ -60,6 +60,7 @@ const configure = {
 
 const searchBox = {
   translations: {
+    resetTitle: "Wyczyść wyszukiwanie",
     placeholder: "Szukaj..."
   }
 };

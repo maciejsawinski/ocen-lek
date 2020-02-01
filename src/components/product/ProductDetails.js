@@ -32,25 +32,25 @@ const ProductDetails = ({ error, isLoading, productDetails }) => {
     return (
       <section className="product-details">
         <h2 className="product-details-title">{name}</h2>
-        <div className="product-details-subtitle">Substancje czynne:</div>
+        <span className="product-details-subtitle">Substancje czynne:</span>
         {activeSubstances.map((activeSubstance, index) => (
           <div className="product-details-items" key={index}>
             {activeSubstance}
           </div>
         ))}
-        <div className="product-details-subtitle">Dawki:</div>
+        <span className="product-details-subtitle">Dawki:</span>
         {quantities.map((quantity, index) => (
           <div className="product-details-items" key={index}>
             {quantity}
           </div>
         ))}
-        <div className="product-details-subtitle">Typy:</div>
+        <span className="product-details-subtitle">Typy:</span>
         {types.map((type, index) => (
           <div className="product-details-items" key={index}>
             {type}
           </div>
         ))}
-        <div className="product-details-subtitle">Producenci:</div>
+        <span className="product-details-subtitle">Producenci:</span>
         {companies.map((company, index) => (
           <div className="product-details-items" key={index}>
             {company}

@@ -1,3 +1,94 @@
 .product-add-review {
-  margin: 5rem auto;
+  @include boxShadow;
+  margin: 5rem 0;
+  box-sizing: border-box;
+  padding: 2rem;
+  border-radius: 0.2rem;
+  
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    .product-add-review-elements {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+  
+      .product-add-review-elements-rating-list {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+  
+        div {
+          display: flex;
+          flex-direction: column;
+  
+          span:nth-child(2) span {
+            color: $secondaryColor;
+          }
+        }
+      }
+  
+      .product-add-review-elements-inputs {
+        height: 20rem;
+        flex-grow: 4;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+  
+        textarea {
+          @include boxShadow;
+          height: 15rem;
+          width: 100%;
+          box-sizing: border-box;
+          border-radius: 0.2rem;
+          padding: 1rem;
+          outline: none;
+          border: 1px solid $backgroundColor;
+          background-color: $backgroundSecondaryColor;
+  
+          &:focus {
+            border: 1px solid $secondaryColor;
+          }
+        }
+  
+        input {
+          @include boxShadow;
+          width: 50%;
+          box-sizing: border-box;
+          border-radius: 0.2rem;
+          padding: 0.25rem 1rem;
+          outline: none;
+          border: 1px solid $backgroundColor;
+          background-color: $backgroundSecondaryColor;
+  
+          &:focus {
+            border: 1px solid $secondaryColor;
+          }
+        }
+      }
+    }
+
+    button {
+      @include button;
+      align-self: center;
+    }
+  }
+}
+
+@media(max-width: 768px) {
+  .product-add-review form .product-add-review-elements {
+    flex-direction: column;
+    justify-content: center;
+
+    .product-add-review-elements-inputs {
+      width: 95%;
+      align-items: center;
+
+      textarea,input {
+        width: 95%
+      }
+    }
+  }
 }
