@@ -91,7 +91,7 @@ const AlgoliaSearch = () => {
   return (
     <InstantSearch {...instantSearch}>
       <Configure {...configure} />
-      <SearchBox {...searchBox} />
+      <SearchBox autoFocus {...searchBox} />
       <Hits hitComponent={AlgoliaSearchHit} />
       <CustomStateResults />
     </InstantSearch>

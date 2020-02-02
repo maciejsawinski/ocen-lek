@@ -3,18 +3,26 @@ import PropTypes from "prop-types";
 
 import Rating from "react-rating";
 
+const defaultState = {
+  text: "",
+  userName: "",
+  rating: {
+    effectiveness: 0,
+    easeOfUse: 0,
+    price: 0,
+    availability: 0
+  },
+  userId: "0",
+  errors: {
+    userName: false,
+    text: false,
+    messages: []
+  },
+  submitted: false
+};
+
 class ProductAddReview extends Component {
-  state = {
-    text: "",
-    userName: "",
-    rating: {
-      availability: 0,
-      effectiveness: 0,
-      price: 0,
-      sideEffects: 0
-    },
-    userId: "0"
-  };
+  state = defaultState;
 
   onRatingChange(rating, ratingName) {
     this.setState({ rating: { ...this.state.rating, [ratingName]: rating } });
@@ -27,18 +35,63 @@ class ProductAddReview extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    /*this.props.addReview(this.props.documentId, this.state);
+    const { text, userName, rating, submitted } = this.state;
+    let errorMessages = [];
+    let textError = false;
+    let userNameError = false;
 
-    this.setState({
-      text: "",
-      userName: "",
-      rating: {
-        availability: 0,
-        effectiveness: 0,
-        price: 0,
-        sideEffects: 0
-      }
-    });*/
+    if (text === "") {
+      errorMessages = [...errorMessages, "treść nie może być pusta"];
+      textError = true;
+    }
+
+    if (text.length > 500) {
+      errorMessages = [...errorMessages, "treść zawiera za dużo znaków"];
+      textError = true;
+    }
+
+    if (userName === "") {
+      errorMessages = [...errorMessages, "imię nie może być puste"];
+      userNameError = true;
+    }
+
+    if (userName.length > 30) {
+      errorMessages = [...errorMessages, "imię zawiera za dużo znaków"];
+      userNameError = true;
+    }
+
+    if (
+      rating.effectiveness === 0 ||
+      rating.easeOfUse === 0 ||
+      rating.price === 0 ||
+      rating.availability === 0
+    ) {
+      errorMessages = [
+        ...errorMessages,
+        "dodaj oceny we wszystkich kategoriach"
+      ];
+    }
+
+    if (errorMessages.length === 0 && !submitted) {
+      const { userName, text, rating, userId } = this.state;
+
+      this.props.addReview(this.props.documentId, {
+        userName,
+        text,
+        rating,
+        userId
+      });
+
+      this.setState({ ...defaultState, submitted: true });
+    } else {
+      this.setState({
+        errors: {
+          userName: userNameError,
+          text: textError,
+          messages: errorMessages
+        }
+      });
+    }
   }
 
   render() {
@@ -47,21 +100,39 @@ class ProductAddReview extends Component {
       fullSymbol: "im im-star"
     };
 
+    const { text, userName, rating, errors, submitted } = this.state;
+
+    let errorEls;
+    if (errors.messages.length > 0) {
+      errorEls = (
+        <div className="product-add-review-errors">
+          {errors.messages.map((message, index) => (
+            <p key={index}>{message}</p>
+          ))}
+        </div>
+      );
+    }
+
+    const textareaErrorClassName = errors.text
+      ? "product-add-review-elements-inputs-error"
+      : "";
+
+    const inputErrorClassName = errors.userName
+      ? "product-add-review-elements-inputs-error"
+      : "";
+
     return (
       <section className="product-add-review">
+        {submitted && (
+          <div className="product-add-review-success">
+            <div className="product-add-review-success-text">
+              Dziękujemy za dodanie oceny
+            </div>
+          </div>
+        )}
         <form onSubmit={e => this.onSubmit(e)}>
           <div className="product-add-review-elements">
             <div className="product-add-review-elements-rating-list">
-              <div>
-                <span>Dostępność: </span>
-                <Rating
-                  {...ratingProperties}
-                  onChange={rating =>
-                    this.onRatingChange(rating, "availability")
-                  }
-                  initialRating={this.state.rating.availability}
-                />
-              </div>
               <div>
                 <span>Skuteczność: </span>
                 <Rating
@@ -69,7 +140,25 @@ class ProductAddReview extends Component {
                   onChange={rating =>
                     this.onRatingChange(rating, "effectiveness")
                   }
-                  initialRating={this.state.rating.effectiveness}
+                  initialRating={rating.effectiveness}
+                />
+              </div>
+              <div>
+                <span>Łatwość przyjmowania: </span>
+                <Rating
+                  {...ratingProperties}
+                  onChange={rating => this.onRatingChange(rating, "easeOfUse")}
+                  initialRating={rating.easeOfUse}
+                />
+              </div>
+              <div>
+                <span>Dostępność: </span>
+                <Rating
+                  {...ratingProperties}
+                  onChange={rating =>
+                    this.onRatingChange(rating, "availability")
+                  }
+                  initialRating={rating.availability}
                 />
               </div>
               <div>
@@ -77,36 +166,31 @@ class ProductAddReview extends Component {
                 <Rating
                   {...ratingProperties}
                   onChange={rating => this.onRatingChange(rating, "price")}
-                  initialRating={this.state.rating.price}
-                />
-              </div>
-              <div>
-                <span>Skutki uboczne: </span>
-                <Rating
-                  {...ratingProperties}
-                  onChange={rating =>
-                    this.onRatingChange(rating, "sideEffects")
-                  }
-                  initialRating={this.state.rating.sideEffects}
+                  initialRating={rating.price}
                 />
               </div>
             </div>
             <div className="product-add-review-elements-inputs">
               <textarea
-                value={this.state.text}
+                className={textareaErrorClassName}
+                value={text}
                 onChange={e => this.onInputChange(e)}
                 name="text"
                 placeholder="treść..."
+                maxLength="500"
               />
               <input
-                value={this.state.name}
+                className={inputErrorClassName}
+                value={userName}
                 onChange={e => this.onInputChange(e)}
                 type="text"
                 name="userName"
                 placeholder="imię"
+                maxLength="30"
               />
             </div>
           </div>
+          {errorEls}
           <button type="submit">Wyślij</button>
         </form>
       </section>

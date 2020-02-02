@@ -10,7 +10,7 @@ const ProductReview = ({ review }) => {
     dateAdded,
     text,
     userName,
-    rating: { availability, effectiveness, price, sideEffects }
+    rating: { effectiveness, easeOfUse, availability, price }
   } = review;
 
   moment.locale("pl");
@@ -25,25 +25,25 @@ const ProductReview = ({ review }) => {
       <ul className="product-reviews-review-rating-list">
         <li>
           <div className="product-reviews-rating-list-subtitle">
-            Dostępność:
-          </div>
-          <RatingStatic rating={availability} />
-        </li>
-        <li>
-          <div className="product-reviews-rating-list-subtitle">
             Skuteczność:
           </div>
           <RatingStatic rating={effectiveness} />
         </li>
         <li>
-          <div className="product-reviews-rating-list-subtitle">Cena:</div>
-          <RatingStatic rating={price} />
+          <div className="product-reviews-rating-list-subtitle">
+            Łatwość przyjmowania:
+          </div>
+          <RatingStatic rating={easeOfUse} />
         </li>
         <li>
           <div className="product-reviews-rating-list-subtitle">
-            Skutki uboczne:
+            Dostępność:
           </div>
-          <RatingStatic rating={sideEffects} />
+          <RatingStatic rating={availability} />
+        </li>
+        <li>
+          <div className="product-reviews-rating-list-subtitle">Cena:</div>
+          <RatingStatic rating={price} />
         </li>
       </ul>
       <div className="product-reviews-review-date">{dateAddedReadable}</div>
