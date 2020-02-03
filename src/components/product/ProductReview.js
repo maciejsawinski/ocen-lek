@@ -5,18 +5,19 @@ import "moment/locale/pl";
 
 import RatingStatic from "../layout/RatingStatic";
 
-const ProductReview = ({ review }) => {
-  const {
+const ProductReview = ({
+  review: {
     dateAdded,
     text,
     userName,
     rating: { effectiveness, easeOfUse, availability, price }
-  } = review;
-
+  }
+}) => {
   moment.locale("pl");
   const dateAddedReadable = moment(
     new Date(dateAdded.seconds * 1000)
   ).fromNow();
+
   return (
     <article className="product-reviews-review">
       <div className="product-reviews-review-text">

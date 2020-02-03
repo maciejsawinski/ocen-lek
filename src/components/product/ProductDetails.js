@@ -11,6 +11,7 @@ const ProductDetails = ({ error, isLoading, productDetails }) => {
       </section>
     );
   }
+
   if (isLoading) {
     return (
       <section className="product-details">
@@ -18,6 +19,7 @@ const ProductDetails = ({ error, isLoading, productDetails }) => {
       </section>
     );
   }
+
   if (
     Object.keys(productDetails).length !== 0 &&
     productDetails.constructor === Object

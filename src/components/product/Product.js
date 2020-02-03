@@ -34,18 +34,16 @@ class Product extends Component {
   }
 
   render() {
-    const showAddReviewForm = checkReviewsSubmittedLocalStorage(
-      this.props.documentId
-    );
+    const { documentId } = this.props;
+
+    const showAddReviewForm = checkReviewsSubmittedLocalStorage(documentId);
 
     return (
       <div className="product">
         <Header />
         <div className="product-container">
           <ProductDetails />
-          {showAddReviewForm && (
-            <ProductAddReview documentId={this.props.documentId} />
-          )}
+          {showAddReviewForm && <ProductAddReview documentId={documentId} />}
           <ProductReviews />
         </div>
         <Footer />

@@ -17,8 +17,8 @@ const mapState = (
   }
 ) => {
   return {
-    documentId,
-    name
+    name,
+    documentId
   };
 };
 

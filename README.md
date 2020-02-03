@@ -17,6 +17,7 @@ other packages:
 
 - React Router
 - moment.js
+- react-content-loader
 - react-js-pagination
 - React Rating
 

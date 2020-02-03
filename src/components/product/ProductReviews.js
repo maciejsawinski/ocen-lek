@@ -48,6 +48,7 @@ class ProductReviews extends Component {
         </section>
       );
     }
+
     if (isLoading) {
       return (
         <section className="product-reviews">
@@ -55,6 +56,7 @@ class ProductReviews extends Component {
         </section>
       );
     }
+
     if (typeof productReviews === "undefined" || productReviews.length === 0) {
       return (
         <section className="product-reviews">
@@ -62,6 +64,7 @@ class ProductReviews extends Component {
         </section>
       );
     }
+
     if (productReviews.length > 0) {
       let ratings = {
         effectiveness: [],

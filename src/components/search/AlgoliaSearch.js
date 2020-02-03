@@ -64,22 +64,22 @@ const searchBox = {
 };
 
 const StateResults = ({ searchResults, error }) => {
-  if (error) {
-    return <h2 className="search-error">Błąd połącznia</h2>;
-  }
-
   if (searchResults && searchResults.query === null) {
     return null;
   }
 
-  if (searchResults && searchResults.nbHits !== 0) {
-    return <Pagination {...pagination} />;
+  if (error) {
+    return <h2 className="search-error">Błąd połącznia</h2>;
   }
 
   if (searchResults && searchResults.query)
     if (searchResults.nbHits === 0 && searchResults.query.length > 0) {
       return <h2 className="search-nomatches">Brak wyników</h2>;
     }
+
+  if (searchResults && searchResults.nbHits !== 0) {
+    return <Pagination {...pagination} />;
+  }
 
   return null;
 };

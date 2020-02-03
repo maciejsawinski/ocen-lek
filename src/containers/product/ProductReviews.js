@@ -2,9 +2,7 @@ import { connect } from "react-redux";
 
 import ProductReviews from "../../components/product/ProductReviews";
 
-const mapState = ({ product }) => {
-  const { isLoading, error, productReviews } = product;
-
+const mapState = ({ product: { isLoading, error, productReviews } }) => {
   let sortedProductReviews;
   if (typeof productReviews === "undefined") {
     sortedProductReviews = productReviews;
