@@ -5,7 +5,11 @@ import { getProduct } from "../../redux/actions/product";
 import Product from "../../components/product/Product";
 
 const mapState = (
-  _,
+  {
+    product: {
+      productDetails: { name }
+    }
+  },
   {
     match: {
       params: { documentId }
@@ -13,7 +17,8 @@ const mapState = (
   }
 ) => {
   return {
-    documentId
+    documentId,
+    name
   };
 };
 
@@ -21,7 +26,4 @@ const mapDispatch = dispach => ({
   getProduct: documentId => dispach(getProduct(documentId))
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(Product);
+export default connect(mapState, mapDispatch)(Product);

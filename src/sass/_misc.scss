@@ -2,4 +2,7 @@ body {
   background-color: $backgroundColor;
   color: $textColor;
   line-height: 3rem;
+  ::selection {
+    background: lighten($primaryColor, 50);
+  }
 }

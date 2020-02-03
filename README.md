@@ -1,30 +1,42 @@
-# Oceń Lek
+# oceń lek
 
-Aplikacja na której można wyszukiwać zarejestrowane w Polsce leki oraz przeglądać i tworzyć recenzje dla nich.
+A simple app where you can find reviews for medications and add your own.
 
-## Dla kogo:
+## Technologies used:
 
-- dla osób, które chcą zdobyć informacje o lekach, stworzone przez osoby które je przyjmują
-- dla przyjmujących leki, którzy chcą się podzielić swoimi doświadczeniami w ich przyjmowaniu
+- JavaScript
+- React
+- Redux
+- Sass
+- HTML
+- CSS
+- Firebase
+- Algolia
 
-## Funkcjonalności:
+other packages:
 
-1. wyszukiwarka leków po nazwie lub substancji czynnej
-2. strona leku na której można:
+- React Router
+- moment.js
+- react-js-pagination
+- React Rating
 
-- zobaczyć szczegóły
-- zobaczyć oceny i recenzje leku
-- napisać recenzję
+## Features
 
-## Uruchomienie projektu
+1. Searching medicine by name or active substance
+2. Product page:
+   - basic info
+   - reviews
+   - add review
 
-Po sklonowaniu repozytorium:
+## Setup
+
+After cloning the repo:
 
 ```
 yarn
 ```
 
-Do uruchomienia aplikacji:
+To start the app:
 
 ```
 yarn start

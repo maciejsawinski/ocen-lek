@@ -1,7 +1,7 @@
 .product-add-review {
   @include boxShadow;
   position: relative;
-  margin: 5rem 0;
+  margin-bottom: 5rem;
   box-sizing: border-box;
   padding: 2rem;
   border-radius: 0.2rem;
@@ -18,14 +18,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: .25s ease-in;
+    transition: 0.25s ease-in;
 
     .product-add-review-success-text {
       font-weight: bold;
 
       &::after {
-        font-family: 'iconmonstr-iconic-font';
-        content: '  \e0f1';
+        font-family: "iconmonstr-iconic-font";
+        content: "  \e0f1";
       }
     }
   }
@@ -38,29 +38,29 @@
       display: flex;
       justify-content: space-around;
       align-items: center;
-  
+
       .product-add-review-elements-rating-list {
         flex-grow: 1;
         display: flex;
         flex-direction: column;
-  
+
         div {
           display: flex;
           flex-direction: column;
-  
+
           span:nth-child(2) span {
             color: $secondaryColor;
           }
         }
       }
-  
+
       .product-add-review-elements-inputs {
         height: 20rem;
         flex-grow: 4;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-  
+
         textarea {
           @include boxShadow;
           height: 15rem;
@@ -71,12 +71,12 @@
           outline: none;
           border: 1px solid $backgroundColor;
           background-color: $backgroundSecondaryColor;
-  
+
           &:focus {
             border: 1px solid $secondaryColor;
           }
         }
-  
+
         input {
           @include boxShadow;
           width: 50%;
@@ -86,14 +86,14 @@
           outline: none;
           border: 1px solid $backgroundColor;
           background-color: $backgroundSecondaryColor;
-  
+
           &:focus {
             border: 1px solid $secondaryColor;
           }
         }
 
         .product-add-review-elements-inputs-error {
-          border: 1px solid red; 
+          border: 1px solid red;
         }
       }
     }
@@ -112,7 +112,7 @@
   }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .product-add-review form .product-add-review-elements {
     flex-direction: column;
     justify-content: center;
@@ -122,8 +122,9 @@
       width: 95%;
       align-items: center;
 
-      textarea,input {
-        width: 95%
+      textarea,
+      input {
+        width: 95%;
       }
     }
   }

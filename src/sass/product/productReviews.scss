@@ -2,20 +2,20 @@
   .product-reviews-error {
     text-align: center;
     font-weight: normal;
-    
+
     &::after {
-      font-family: 'iconmonstr-iconic-font';
-      content: '  \e0f5';
+      font-family: "iconmonstr-iconic-font";
+      content: "  \e0f5";
     }
   }
 
   .product-reviews-nomatches {
     text-align: center;
     font-weight: normal;
-    
+
     &::after {
-      font-family: 'iconmonstr-iconic-font';
-      content: '  \e05a';
+      font-family: "iconmonstr-iconic-font";
+      content: "  \e05a";
     }
   }
 
@@ -35,26 +35,23 @@
       display: flex;
       justify-content: space-around;
       list-style: none;
-  
+
       li {
         display: flex;
         flex-direction: column;
         align-items: center;
-  
+
         .product-reviews-box-rating-list-subtitle {
           @include underline;
           text-align: center;
         }
-  
+
         span {
           color: $primaryColor;
         }
       }
     }
   }
-  
-
-  
 
   .product-reviews-container {
     margin-top: 5rem;
@@ -71,23 +68,42 @@
         display: flex;
         justify-content: space-around;
         list-style: none;
-    
+
         li span {
           font-size: 1.3rem;
           color: $primaryColor;
         }
       }
-      
+
       .product-reviews-review-date {
         font-style: italic;
         font-size: 1.3rem;
         color: $primaryColor;
       }
     }
+
+    .product-reviews-container-pagination-list {
+      display: flex;
+      justify-content: center;
+      margin: 2rem auto;
+      list-style: none;
+
+      li > a {
+        @include paginationItem;
+      }
+
+      li.disabled > a {
+        @include paginationItem($backgroundSecondaryColor);
+      }
+
+      li.active > a {
+        @include paginationItem(lighten($secondaryColor, 25));
+      }
+    }
   }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .product-reviews .product-reviews-box .product-reviews-box-rating-list {
     flex-direction: column;
     justify-content: center;

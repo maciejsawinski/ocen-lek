@@ -4,6 +4,8 @@ import AlgoliaSearch from "./AlgoliaSearch";
 import Footer from "../layout/Footer";
 
 const Search = () => {
+  document.title = "oceń lek";
+
   return (
     <div className="search">
       <div className="search-container">

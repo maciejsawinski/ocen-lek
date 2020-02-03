@@ -19,8 +19,6 @@ const pagination = {
   translations: {
     previous: "‹",
     next: "›",
-    first: "«",
-    last: "»",
     page(currentRefinement) {
       return currentRefinement;
     },

@@ -21,11 +21,11 @@
     font-size: 2rem;
     background-color: $backgroundSecondaryColor;
 
-    &::-webkit-search-cancel-button{
-      display: none;   
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
   }
-  }
-  
+
   .ais-SearchBox-submit {
     display: none;
   }
@@ -33,19 +33,19 @@
 
 .search-error {
   margin-top: 2rem;
-  
+
   &::after {
-    font-family: 'iconmonstr-iconic-font';
-    content: '  \e0f5';
+    font-family: "iconmonstr-iconic-font";
+    content: "  \e0f5";
   }
 }
 
 .search-nomatches {
   margin-top: 2rem;
-  
+
   &::after {
-    font-family: 'iconmonstr-iconic-font';
-    content: '  \e05a';
+    font-family: "iconmonstr-iconic-font";
+    content: "  \e05a";
   }
 }
 
@@ -55,7 +55,7 @@
 
   .ais-Hits-list {
     list-style: none;
-    
+
     .ais-Hits-item {
       display: flex;
       flex-direction: column;
@@ -69,13 +69,13 @@
         color: $textColor;
 
         &::before {
-          font-family: 'iconmonstr-iconic-font';
+          font-family: "iconmonstr-iconic-font";
           font-size: 1.6rem;
-          content: '\e04b  ';
+          content: "\e04b  ";
         }
 
         .ais-Highlight-highlighted {
-          @include underline; 
+          @include underline;
           font-style: normal;
         }
       }
@@ -85,7 +85,7 @@
         flex-direction: column;
 
         .ais-Highlight-highlighted {
-          @include underline; 
+          @include underline;
           font-style: normal;
         }
       }
@@ -107,11 +107,11 @@
   }
 
   .ais-Pagination-item--selected > a {
-    @include paginationItem(lighten($secondaryColor,20));
+    @include paginationItem(lighten($secondaryColor, 25));
   }
 }
 
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .ais-Hits {
     width: 95%;
   }

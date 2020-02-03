@@ -34,6 +34,18 @@ const addReview = (documentId, review) => dispatch => {
       })
     })
     .then(() => {
+      let localSubmittedReviews = localStorage.getItem("reviewsSubmitted");
+      if (localSubmittedReviews) {
+        localSubmittedReviews = JSON.parse(localSubmittedReviews);
+        localStorage.setItem(
+          "reviewsSubmitted",
+          JSON.stringify([...localSubmittedReviews, documentId])
+        );
+      } else {
+        localStorage.setItem("reviewsSubmitted", JSON.stringify([documentId]));
+      }
+    })
+    .then(() => {
       dispatch(reviewPosted());
       dispatch(getProduct(documentId));
     })

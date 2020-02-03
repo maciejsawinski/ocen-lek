@@ -1,11 +1,13 @@
 .product-details {
+  margin-bottom: 5rem;
+
   .product-details-error {
     text-align: center;
     font-weight: normal;
-    
+
     &::after {
-      font-family: 'iconmonstr-iconic-font';
-      content: '  \e0f5';
+      font-family: "iconmonstr-iconic-font";
+      content: "  \e0f5";
     }
   }
 

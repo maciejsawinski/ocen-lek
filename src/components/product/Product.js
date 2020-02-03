@@ -7,18 +7,45 @@ import ProductAddReview from "../../containers/product/ProductAddReview";
 import ProductReviews from "../../containers/product/ProductReviews";
 import Footer from "../layout/Footer";
 
+const checkReviewsSubmittedLocalStorage = documentId => {
+  let localSubmittedReviews = localStorage.getItem("reviewsSubmitted");
+  if (localSubmittedReviews) {
+    localSubmittedReviews = JSON.parse(localSubmittedReviews);
+    if (localSubmittedReviews.includes(documentId)) {
+      return false;
+    } else {
+      return true;
+    }
+  } else {
+    return true;
+  }
+};
+
 class Product extends Component {
   componentDidMount() {
     this.props.getProduct(this.props.documentId);
   }
 
+  componentDidUpdate() {
+    document.title =
+      typeof this.props.name === "undefined"
+        ? "oceń lek"
+        : `${this.props.name} - oceń lek`;
+  }
+
   render() {
+    const showAddReviewForm = checkReviewsSubmittedLocalStorage(
+      this.props.documentId
+    );
+
     return (
       <div className="product">
         <Header />
         <div className="product-container">
           <ProductDetails />
-          <ProductAddReview documentId={this.props.documentId} />
+          {showAddReviewForm && (
+            <ProductAddReview documentId={this.props.documentId} />
+          )}
           <ProductReviews />
         </div>
         <Footer />
