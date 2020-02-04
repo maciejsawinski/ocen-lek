@@ -32,8 +32,7 @@ const getProduct = documentId => dispatch => {
     .then(doc => {
       dispatch(productFetched(doc.data()));
     })
-    .catch(error => {
-      console.log("Error getting document:", error);
+    .catch(() => {
       dispatch(productFetchingError());
     });
 };

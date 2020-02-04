@@ -35,26 +35,26 @@ const ProductDetails = ({ error, isLoading, productDetails }) => {
       <section className="product-details">
         <h2 className="product-details-title">{name}</h2>
         <span className="product-details-subtitle">Substancje czynne:</span>
-        {activeSubstances.map((activeSubstance, index) => (
-          <div className="product-details-items" key={index}>
+        {activeSubstances.map(activeSubstance => (
+          <div className="product-details-items" key={activeSubstance}>
             {activeSubstance}
           </div>
         ))}
         <span className="product-details-subtitle">Dawki:</span>
-        {quantities.map((quantity, index) => (
-          <div className="product-details-items" key={index}>
+        {quantities.map(quantity => (
+          <div className="product-details-items" key={quantity}>
             {quantity}
           </div>
         ))}
         <span className="product-details-subtitle">Typy:</span>
-        {types.map((type, index) => (
-          <div className="product-details-items" key={index}>
+        {types.map(type => (
+          <div className="product-details-items" key={type}>
             {type}
           </div>
         ))}
         <span className="product-details-subtitle">Producenci:</span>
-        {companies.map((company, index) => (
-          <div className="product-details-items" key={index}>
+        {companies.map(company => (
+          <div className="product-details-items" key={company}>
             {company}
           </div>
         ))}
@@ -68,7 +68,15 @@ const ProductDetails = ({ error, isLoading, productDetails }) => {
 ProductDetails.propTypes = {
   error: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  productDetails: PropTypes.object.isRequired
+  productDetails: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    companies: PropTypes.arrayOf(PropTypes.string),
+    activeSubstances: PropTypes.arrayOf(PropTypes.string),
+    quantities: PropTypes.arrayOf(PropTypes.string),
+    types: PropTypes.arrayOf(PropTypes.string),
+    reviews: PropTypes.arrayOf(PropTypes.object)
+  }).isRequired
 };
 
 export default ProductDetails;

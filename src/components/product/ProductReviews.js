@@ -19,7 +19,7 @@ const pushRatings = (ratings, rating) => {
 const calculateAverage = ratings => {
   const sum = ratings.reduce((prev, curr) => prev + curr);
 
-  return (sum / ratings.length).toFixed(1);
+  return Number((sum / ratings.length).toFixed(1));
 };
 
 class ProductReviews extends Component {
@@ -66,6 +66,8 @@ class ProductReviews extends Component {
     }
 
     if (productReviews.length > 0) {
+      const { activePage, perPage } = this.state;
+
       let ratings = {
         effectiveness: [],
         easeOfUse: [],
@@ -77,16 +79,22 @@ class ProductReviews extends Component {
         ratings = pushRatings(ratings, rating);
       });
 
-      const indexOfLastReview = this.state.activePage * this.state.perPage;
-      const indexOfFirstReview = indexOfLastReview - this.state.perPage;
+      const averageEffectiveness = calculateAverage(ratings.effectiveness);
+      const averageEaseOfUse = calculateAverage(ratings.easeOfUse);
+      const averageAvailability = calculateAverage(ratings.availability);
+      const averagePrice = calculateAverage(ratings.price);
+      const averageOverall = calculateAverage(ratings.overall);
+
+      const indexOfLastReview = activePage * perPage;
+      const indexOfFirstReview = indexOfLastReview - perPage;
       const currentReviews = productReviews.slice(
         indexOfFirstReview,
         indexOfLastReview
       );
 
       const pagination = {
-        activePage: this.state.activePage,
-        itemsCountPerPage: this.state.perPage,
+        activePage,
+        itemsCountPerPage: perPage,
         totalItemsCount: productReviews.length,
         pageRangeDisplayed: 3,
         hideFirstLastPages: true,
@@ -104,39 +112,54 @@ class ProductReviews extends Component {
                 <div className="product-reviews-box-rating-list-subtitle">
                   Skuteczność:
                 </div>
-                <RatingStatic
-                  rating={calculateAverage(ratings.effectiveness)}
-                />
+                <RatingStatic rating={averageEffectiveness} />
+                <div className="product-reviews-box-rating-list-text">
+                  {averageEffectiveness}
+                </div>
               </li>
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
                   Łatwość przyjmowania:
                 </div>
-                <RatingStatic rating={calculateAverage(ratings.easeOfUse)} />
+                <RatingStatic rating={averageEaseOfUse} />
+                <div className="product-reviews-box-rating-list-text">
+                  {averageEaseOfUse}
+                </div>
               </li>
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
                   Dostępność:
                 </div>
                 <RatingStatic rating={calculateAverage(ratings.availability)} />
+                <div className="product-reviews-box-rating-list-text">
+                  {averageAvailability}
+                </div>
               </li>
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
                   Cena:
                 </div>
-                <RatingStatic rating={calculateAverage(ratings.price)} />
+                <RatingStatic rating={averagePrice} />
+                <div className="product-reviews-box-rating-list-text">
+                  {averagePrice}
+                </div>
               </li>
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
                   Średnia ocen:
                 </div>
-                <RatingStatic rating={calculateAverage(ratings.overall)} />
+                <RatingStatic rating={averageOverall} />
+                <div className="product-reviews-box-rating-list-text">
+                  {averageOverall}
+                </div>
               </li>
             </ul>
           </div>
           <div className="product-reviews-container">
-            {currentReviews.map((review, index) => {
-              return <ProductReview key={index} review={review} />;
+            {currentReviews.map(review => {
+              return (
+                <ProductReview key={review.dateAdded.seconds} review={review} />
+              );
             })}
             <Pagination
               {...pagination}
@@ -154,7 +177,11 @@ class ProductReviews extends Component {
 ProductReviews.propTypes = {
   error: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  productReviews: PropTypes.array
+  productReviews: PropTypes.arrayOf(PropTypes.object)
+};
+
+ProductReviews.defaultProps = {
+  productReviews: []
 };
 
 export default ProductReviews;

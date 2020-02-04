@@ -1,5 +1,6 @@
 import React from "react";
 import Rating from "react-rating";
+import PropTypes from "prop-types";
 
 const RatingStatic = ({ rating }) => {
   return (
@@ -11,6 +12,10 @@ const RatingStatic = ({ rating }) => {
       readonly
     />
   );
+};
+
+RatingStatic.propTypes = {
+  rating: PropTypes.number.isRequired
 };
 
 export default RatingStatic;

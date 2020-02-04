@@ -13,24 +13,21 @@ const checkReviewsSubmittedLocalStorage = documentId => {
     localSubmittedReviews = JSON.parse(localSubmittedReviews);
     if (localSubmittedReviews.includes(documentId)) {
       return false;
-    } else {
-      return true;
     }
-  } else {
     return true;
   }
+  return true;
 };
 
 class Product extends Component {
   componentDidMount() {
-    this.props.getProduct(this.props.documentId);
+    const { documentId, getProduct } = this.props;
+    getProduct(documentId);
   }
 
   componentDidUpdate() {
-    document.title =
-      typeof this.props.name === "undefined"
-        ? "oceń lek"
-        : `${this.props.name} - oceń lek`;
+    const { name } = this.props;
+    document.title = name === "" ? "oceń lek" : `${name} - oceń lek`;
   }
 
   render() {
@@ -53,6 +50,8 @@ class Product extends Component {
 }
 
 Product.propTypes = {
+  documentId: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   getProduct: PropTypes.func.isRequired
 };
 

@@ -14,7 +14,4 @@ const mapDispatch = dispach => ({
   addReview: (documentId, review) => dispach(addReview(documentId, review))
 });
 
-export default connect(
-  mapState,
-  mapDispatch
-)(ProductAddReview);
+export default connect(mapState, mapDispatch)(ProductAddReview);

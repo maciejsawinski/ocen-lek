@@ -53,7 +53,12 @@ const ProductReview = ({
 };
 
 ProductReview.propTypes = {
-  review: PropTypes.object.isRequired
+  review: PropTypes.shape({
+    dateAdded: PropTypes.objectOf(PropTypes.number),
+    text: PropTypes.string,
+    userName: PropTypes.string,
+    rating: PropTypes.objectOf(PropTypes.number)
+  }).isRequired
 };
 
 export default ProductReview;

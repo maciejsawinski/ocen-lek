@@ -49,8 +49,7 @@ const addReview = (documentId, review) => dispatch => {
       dispatch(reviewPosted());
       dispatch(getProduct(documentId));
     })
-    .catch(error => {
-      console.log("Error adding review:", error);
+    .catch(() => {
       dispatch(reviewPostingError());
     });
 };

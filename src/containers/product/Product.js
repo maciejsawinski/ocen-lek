@@ -16,6 +16,10 @@ const mapState = (
     }
   }
 ) => {
+  if (typeof name === "undefined") {
+    name = "";
+  }
+
   return {
     name,
     documentId

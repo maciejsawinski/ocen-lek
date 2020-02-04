@@ -25,7 +25,8 @@ class ProductAddReview extends Component {
   state = defaultState;
 
   onRatingChange(rating, ratingName) {
-    this.setState({ rating: { ...this.state.rating, [ratingName]: rating } });
+    const { rating: stateRating } = this.state;
+    this.setState({ rating: { ...stateRating, [ratingName]: rating } });
   }
 
   onInputChange(e) {
@@ -35,7 +36,9 @@ class ProductAddReview extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const { text, userName, rating, submitted } = this.state;
+    const { text, userName, rating, userId, submitted } = this.state;
+    const { addReview, documentId } = this.props;
+
     let errorMessages = [];
     let textError = false;
     let userNameError = false;
@@ -73,9 +76,7 @@ class ProductAddReview extends Component {
     }
 
     if (errorMessages.length === 0 && !submitted) {
-      const { userName, text, rating, userId } = this.state;
-
-      this.props.addReview(this.props.documentId, {
+      addReview(documentId, {
         userName,
         text,
         rating,
@@ -106,8 +107,8 @@ class ProductAddReview extends Component {
     if (errors.messages.length > 0) {
       errorEls = (
         <div className="product-add-review-errors">
-          {errors.messages.map((message, index) => (
-            <p key={index}>{message}</p>
+          {errors.messages.map(message => (
+            <p key={message}>{message}</p>
           ))}
         </div>
       );
@@ -137,8 +138,8 @@ class ProductAddReview extends Component {
                 <span>Skuteczność: </span>
                 <Rating
                   {...ratingProperties}
-                  onChange={rating =>
-                    this.onRatingChange(rating, "effectiveness")
+                  onChange={ratingValue =>
+                    this.onRatingChange(ratingValue, "effectiveness")
                   }
                   initialRating={rating.effectiveness}
                 />
@@ -147,7 +148,9 @@ class ProductAddReview extends Component {
                 <span>Łatwość przyjmowania: </span>
                 <Rating
                   {...ratingProperties}
-                  onChange={rating => this.onRatingChange(rating, "easeOfUse")}
+                  onChange={ratingValue =>
+                    this.onRatingChange(ratingValue, "easeOfUse")
+                  }
                   initialRating={rating.easeOfUse}
                 />
               </div>
@@ -155,8 +158,8 @@ class ProductAddReview extends Component {
                 <span>Dostępność: </span>
                 <Rating
                   {...ratingProperties}
-                  onChange={rating =>
-                    this.onRatingChange(rating, "availability")
+                  onChange={ratingValue =>
+                    this.onRatingChange(ratingValue, "availability")
                   }
                   initialRating={rating.availability}
                 />
@@ -165,7 +168,9 @@ class ProductAddReview extends Component {
                 <span>Cena: </span>
                 <Rating
                   {...ratingProperties}
-                  onChange={rating => this.onRatingChange(rating, "price")}
+                  onChange={ratingValue =>
+                    this.onRatingChange(ratingValue, "price")
+                  }
                   initialRating={rating.price}
                 />
               </div>

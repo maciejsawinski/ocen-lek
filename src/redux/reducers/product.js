@@ -18,7 +18,7 @@ const product = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: true
       };
-    case PRODUCT_FETCHED:
+    case PRODUCT_FETCHED: {
       const {
         id,
         name,
@@ -41,6 +41,7 @@ const product = (state = initialState, { type, payload }) => {
         },
         productReviews: reviews
       };
+    }
     case PRODUCT_FETCHING_ERROR:
       return {
         ...state,

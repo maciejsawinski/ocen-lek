@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { Link } from "react-router-dom";
 import { Highlight } from "react-instantsearch-dom";
@@ -15,8 +16,8 @@ const AlgoliaSearchHit = ({ hit }) => {
         />
       </Link>
       <div className="search-hit-activesubstance">
-        {hit.activeSubstances.map((_, index) => (
-          <p key={index}>
+        {hit.activeSubstances.map((activesubstance, index) => (
+          <p key={activesubstance}>
             <Highlight attribute={`activeSubstances.${index}`} hit={hit} />
           </p>
         ))}
