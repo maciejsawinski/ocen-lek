@@ -63,6 +63,7 @@
 
         textarea {
           @include boxShadow;
+          resize: none;
           height: 15rem;
           width: 100%;
           box-sizing: border-box;
@@ -116,6 +117,18 @@
   .product-add-review form .product-add-review-elements {
     flex-direction: column;
     justify-content: center;
+
+    .product-add-review-elements-rating-list {
+      justify-content: center;
+      align-items: center;
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+    }
 
     .product-add-review-elements-inputs {
       margin: 3rem 0;

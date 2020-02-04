@@ -24,7 +24,7 @@
     box-sizing: border-box;
     padding: 2rem;
     border-radius: 0.2rem;
-    background-color: lighten($secondaryColor, 25);
+    background-color: lighten($primaryColor, 62);
 
     .product-reviews-box-title {
       text-align: center;
@@ -43,6 +43,7 @@
 
         .product-reviews-box-rating-list-subtitle {
           @include underline;
+          font-weight: bold;
           text-align: center;
         }
 
@@ -74,6 +75,11 @@
         justify-content: space-around;
         list-style: none;
 
+        .product-reviews-rating-list-subtitle {
+          font-weight: bold;
+          color: $primaryColor;
+        }
+
         li span {
           font-size: 1.3rem;
           color: $primaryColor;
@@ -81,7 +87,7 @@
       }
 
       .product-reviews-review-date {
-        font-style: italic;
+        font-weight: bold;
         font-size: 1.3rem;
         color: $primaryColor;
       }
