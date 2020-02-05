@@ -16,6 +16,7 @@ A simple app where you can find reviews for medications and add your own.
 other packages:
 
 - React Router
+- i18next
 - moment.js
 - react-content-loader
 - react-js-pagination

@@ -8,6 +8,7 @@ import {
   Configure,
   connectStateResults
 } from "react-instantsearch-dom";
+import { useTranslation } from "react-i18next";
 
 import algoliaClient from "../../config/algolia";
 
@@ -22,13 +23,6 @@ const pagination = {
     next: "›",
     page(currentRefinement) {
       return currentRefinement;
-    },
-    ariaPrevious: "Poprzednia strona",
-    ariaNext: "Następna strona",
-    ariaFirst: "Pierwsza strona",
-    ariaLast: "Ostatnia strona",
-    ariaPage(currentRefinement) {
-      return `Strona ${currentRefinement}`;
     }
   }
 };
@@ -57,25 +51,20 @@ const configure = {
   hitsPerPage: 10
 };
 
-const searchBox = {
-  translations: {
-    resetTitle: "Wyczyść wyszukiwanie",
-    placeholder: "Szukaj..."
-  }
-};
-
 const StateResults = ({ searchResults, error }) => {
+  const { t } = useTranslation();
+
   if (searchResults && searchResults.query === null) {
     return null;
   }
 
   if (error) {
-    return <h2 className="search-error">Błąd połącznia</h2>;
+    return <h2 className="search-error">{t("connectionError")}</h2>;
   }
 
   if (searchResults && searchResults.query)
     if (searchResults.nbHits === 0 && searchResults.query.length > 0) {
-      return <h2 className="search-nomatches">Brak wyników</h2>;
+      return <h2 className="search-nomatches">{t("noMatches")}</h2>;
     }
 
   if (searchResults && searchResults.nbHits !== 0) {
@@ -87,6 +76,15 @@ const StateResults = ({ searchResults, error }) => {
 const CustomStateResults = connectStateResults(StateResults);
 
 const AlgoliaSearch = () => {
+  const { t } = useTranslation();
+
+  const searchBox = {
+    translations: {
+      resetTitle: t("resetTitle"),
+      placeholder: `${t("searchPlaceholder")}...`
+    }
+  };
+
   return (
     <InstantSearch {...instantSearch}>
       <Configure {...configure} />

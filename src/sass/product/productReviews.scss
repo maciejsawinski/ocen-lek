@@ -76,6 +76,7 @@
         list-style: none;
 
         .product-reviews-rating-list-subtitle {
+          font-size: 1.3rem;
           font-weight: bold;
           color: $primaryColor;
         }
@@ -89,7 +90,7 @@
       .product-reviews-review-date {
         font-weight: bold;
         font-size: 1.3rem;
-        color: $primaryColor;
+        color: $secondaryColor;
       }
     }
 

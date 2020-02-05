@@ -1,5 +1,6 @@
 import React from "react";
 
+import LanguageChange from "../layout/LanguageChange";
 import AlgoliaSearch from "./AlgoliaSearch";
 import Footer from "../layout/Footer";
 
@@ -9,6 +10,9 @@ const Search = () => {
   return (
     <div className="search">
       <div className="search-container">
+        <div className="search-buttons">
+          <LanguageChange />
+        </div>
         <h1 className="search-title">oceń lek</h1>
         <AlgoliaSearch />
       </div>
@@ -16,4 +20,5 @@ const Search = () => {
     </div>
   );
 };
+
 export default Search;

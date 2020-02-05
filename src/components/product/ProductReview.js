@@ -1,7 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
+
 import moment from "moment";
 import "moment/locale/pl";
+import "moment/locale/en-gb";
+import "moment/locale/uk";
 
 import RatingStatic from "../layout/RatingStatic";
 
@@ -13,7 +17,21 @@ const ProductReview = ({
     rating: { effectiveness, easeOfUse, availability, price }
   }
 }) => {
-  moment.locale("pl");
+  const { t, i18n } = useTranslation();
+
+  if (typeof i18n.language === "undefined") {
+    moment.locale("pl");
+  } else {
+    if (i18n.language === "pl") {
+      moment.locale("pl");
+    }
+    if (i18n.language === "en") {
+      moment.locale("en-gb");
+    }
+    if (i18n.language === "uk") {
+      moment.locale("uk");
+    }
+  }
   const dateAddedReadable = moment(
     new Date(dateAdded.seconds * 1000)
   ).fromNow();
@@ -26,24 +44,26 @@ const ProductReview = ({
       <ul className="product-reviews-review-rating-list">
         <li>
           <div className="product-reviews-rating-list-subtitle">
-            Skuteczność:
+            {t("effectiveness")}:
           </div>
           <RatingStatic rating={effectiveness} />
         </li>
         <li>
           <div className="product-reviews-rating-list-subtitle">
-            Łatwość przyjmowania:
+            {t("easeOfUse")}:
           </div>
           <RatingStatic rating={easeOfUse} />
         </li>
         <li>
           <div className="product-reviews-rating-list-subtitle">
-            Dostępność:
+            {t("availability")}:
           </div>
           <RatingStatic rating={availability} />
         </li>
         <li>
-          <div className="product-reviews-rating-list-subtitle">Cena:</div>
+          <div className="product-reviews-rating-list-subtitle">
+            {t("price")}:
+          </div>
           <RatingStatic rating={price} />
         </li>
       </ul>

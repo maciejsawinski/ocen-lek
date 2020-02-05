@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Pagination from "react-js-pagination";
+import { withTranslation } from "react-i18next";
 
 import ProductReviewsLoader from "./loader/ProductReviewsLoader";
 import RatingStatic from "../layout/RatingStatic";
@@ -39,12 +40,12 @@ class ProductReviews extends Component {
   }
 
   render() {
-    const { error, isLoading, productReviews } = this.props;
+    const { error, isLoading, productReviews, t } = this.props;
 
     if (error) {
       return (
         <section className="product-reviews">
-          <h2 className="product-reviews-error">Błąd połączenia</h2>
+          <h2 className="product-reviews-error">{t("connectionError")}</h2>
         </section>
       );
     }
@@ -60,7 +61,7 @@ class ProductReviews extends Component {
     if (typeof productReviews === "undefined" || productReviews.length === 0) {
       return (
         <section className="product-reviews">
-          <h2 className="product-reviews-nomatches">Brak ocen</h2>
+          <h2 className="product-reviews-nomatches">{t("noReviewsMessage")}</h2>
         </section>
       );
     }
@@ -106,11 +107,11 @@ class ProductReviews extends Component {
       return (
         <section className="product-reviews">
           <div className="product-reviews-box">
-            <h2 className="product-reviews-box-title">Oceny</h2>
+            <h2 className="product-reviews-box-title">{t("reviews")}</h2>
             <ul className="product-reviews-box-rating-list">
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
-                  Skuteczność:
+                  {t("effectiveness")}:
                 </div>
                 <RatingStatic rating={averageEffectiveness} />
                 <div className="product-reviews-box-rating-list-text">
@@ -119,7 +120,7 @@ class ProductReviews extends Component {
               </li>
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
-                  Łatwość przyjmowania:
+                  {t("easeOfUse")}:
                 </div>
                 <RatingStatic rating={averageEaseOfUse} />
                 <div className="product-reviews-box-rating-list-text">
@@ -128,7 +129,7 @@ class ProductReviews extends Component {
               </li>
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
-                  Dostępność:
+                  {t("availability")}:
                 </div>
                 <RatingStatic rating={calculateAverage(ratings.availability)} />
                 <div className="product-reviews-box-rating-list-text">
@@ -137,7 +138,7 @@ class ProductReviews extends Component {
               </li>
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
-                  Cena:
+                  {t("price")}:
                 </div>
                 <RatingStatic rating={averagePrice} />
                 <div className="product-reviews-box-rating-list-text">
@@ -146,7 +147,7 @@ class ProductReviews extends Component {
               </li>
               <li>
                 <div className="product-reviews-box-rating-list-subtitle">
-                  Średnia ocen:
+                  {t("overall")}:
                 </div>
                 <RatingStatic rating={averageOverall} />
                 <div className="product-reviews-box-rating-list-text">
@@ -177,11 +178,12 @@ class ProductReviews extends Component {
 ProductReviews.propTypes = {
   error: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  productReviews: PropTypes.arrayOf(PropTypes.object)
+  productReviews: PropTypes.arrayOf(PropTypes.object),
+  t: PropTypes.func.isRequired
 };
 
 ProductReviews.defaultProps = {
   productReviews: []
 };
 
-export default ProductReviews;
+export default withTranslation()(ProductReviews);

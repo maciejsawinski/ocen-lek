@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { withTranslation } from "react-i18next";
 
 import Rating from "react-rating";
 
@@ -24,6 +25,20 @@ const defaultState = {
 class ProductAddReview extends Component {
   state = defaultState;
 
+  componentDidMount() {
+    const { i18n } = this.props;
+
+    i18n.on("languageChanged", () => {
+      this.setState({ errors: { messages: [], userName: false, text: false } });
+    });
+  }
+
+  componentWillUnmount() {
+    const { i18n } = this.props;
+
+    i18n.off("languageChanged");
+  }
+
   onRatingChange(rating, ratingName) {
     const { rating: stateRating } = this.state;
     this.setState({ rating: { ...stateRating, [ratingName]: rating } });
@@ -37,29 +52,35 @@ class ProductAddReview extends Component {
     e.preventDefault();
 
     const { text, userName, rating, userId, submitted } = this.state;
-    const { addReview, documentId } = this.props;
+    const { addReview, documentId, t } = this.props;
 
     let errorMessages = [];
     let textError = false;
     let userNameError = false;
 
     if (text === "") {
-      errorMessages = [...errorMessages, "treść nie może być pusta"];
+      errorMessages = [...errorMessages, t("emptyTextErrorMessage")];
       textError = true;
     }
 
     if (text.length > 500) {
-      errorMessages = [...errorMessages, "treść zawiera za dużo znaków"];
+      errorMessages = [
+        ...errorMessages,
+        t("tooManyCharactersTextErrorMessage")
+      ];
       textError = true;
     }
 
     if (userName === "") {
-      errorMessages = [...errorMessages, "imię nie może być puste"];
+      errorMessages = [...errorMessages, t("emptyUserNameErrorMessage")];
       userNameError = true;
     }
 
     if (userName.length > 30) {
-      errorMessages = [...errorMessages, "imię zawiera za dużo znaków"];
+      errorMessages = [
+        ...errorMessages,
+        t("tooManyCharactersUserNameErrorMessage")
+      ];
       userNameError = true;
     }
 
@@ -69,10 +90,7 @@ class ProductAddReview extends Component {
       rating.price === 0 ||
       rating.availability === 0
     ) {
-      errorMessages = [
-        ...errorMessages,
-        "dodaj oceny we wszystkich kategoriach"
-      ];
+      errorMessages = [...errorMessages, t("missingRatingsErrorMessage")];
     }
 
     if (errorMessages.length === 0 && !submitted) {
@@ -102,6 +120,7 @@ class ProductAddReview extends Component {
     };
 
     const { text, userName, rating, errors, submitted } = this.state;
+    const { t } = this.props;
 
     let errorEls;
     if (errors.messages.length > 0) {
@@ -127,7 +146,7 @@ class ProductAddReview extends Component {
         {submitted && (
           <div className="product-add-review-success">
             <div className="product-add-review-success-text">
-              Dziękujemy za dodanie oceny
+              {t("addReviewSuccessMessage")}
             </div>
           </div>
         )}
@@ -135,7 +154,7 @@ class ProductAddReview extends Component {
           <div className="product-add-review-elements">
             <div className="product-add-review-elements-rating-list">
               <div>
-                <span>Skuteczność: </span>
+                <span>{t("effectiveness")}: </span>
                 <Rating
                   {...ratingProperties}
                   onChange={ratingValue =>
@@ -145,7 +164,7 @@ class ProductAddReview extends Component {
                 />
               </div>
               <div>
-                <span>Łatwość przyjmowania: </span>
+                <span>{t("easeOfUse")}: </span>
                 <Rating
                   {...ratingProperties}
                   onChange={ratingValue =>
@@ -155,7 +174,7 @@ class ProductAddReview extends Component {
                 />
               </div>
               <div>
-                <span>Dostępność: </span>
+                <span>{t("availability")}: </span>
                 <Rating
                   {...ratingProperties}
                   onChange={ratingValue =>
@@ -165,7 +184,7 @@ class ProductAddReview extends Component {
                 />
               </div>
               <div>
-                <span>Cena: </span>
+                <span>{t("price")}: </span>
                 <Rating
                   {...ratingProperties}
                   onChange={ratingValue =>
@@ -181,7 +200,7 @@ class ProductAddReview extends Component {
                 value={text}
                 onChange={e => this.onInputChange(e)}
                 name="text"
-                placeholder="treść..."
+                placeholder={`${t("textAreaPlaceholder")}...`}
                 maxLength="500"
               />
               <input
@@ -190,13 +209,13 @@ class ProductAddReview extends Component {
                 onChange={e => this.onInputChange(e)}
                 type="text"
                 name="userName"
-                placeholder="imię"
+                placeholder={t("inputPlaceholder")}
                 maxLength="30"
               />
             </div>
           </div>
           {errorEls}
-          <button type="submit">Wyślij</button>
+          <button type="submit">{t("submit")}</button>
         </form>
       </section>
     );
@@ -205,7 +224,10 @@ class ProductAddReview extends Component {
 
 ProductAddReview.propTypes = {
   documentId: PropTypes.string.isRequired,
-  addReview: PropTypes.func.isRequired
+  addReview: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  i18n: PropTypes.object.isRequired
 };
 
-export default ProductAddReview;
+export default withTranslation()(ProductAddReview);

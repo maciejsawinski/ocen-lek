@@ -13,4 +13,19 @@
       color: $backgroundColor;
     }
   }
+
+  .header-buttons {
+    display: flex;
+    margin-right: 2rem;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      margin-left: 1rem;
+      border: none;
+      background-color: $primaryColor;
+      color: $backgroundColor;
+      cursor: pointer;
+    }
+  }
 }

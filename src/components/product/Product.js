@@ -21,7 +21,10 @@ const checkReviewsSubmittedLocalStorage = documentId => {
 
 class Product extends Component {
   componentDidMount() {
-    const { documentId, getProduct } = this.props;
+    const { documentId, name, getProduct } = this.props;
+
+    document.title = name === "" ? "oceń lek" : `${name} - oceń lek`;
+
     getProduct(documentId);
   }
 

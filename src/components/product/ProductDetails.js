@@ -1,13 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 import ProductDetailsLoader from "./loader/ProductDetailsLoader";
 
 const ProductDetails = ({ error, isLoading, productDetails }) => {
+  const { t } = useTranslation();
+
   if (error) {
     return (
       <section className="product-details">
-        <h2 className="product-details-error">Błąd połączenia</h2>
+        <h2 className="product-details-error">{t("connectionError")}</h2>
       </section>
     );
   }
@@ -34,25 +37,27 @@ const ProductDetails = ({ error, isLoading, productDetails }) => {
     return (
       <section className="product-details">
         <h2 className="product-details-title">{name}</h2>
-        <span className="product-details-subtitle">Substancje czynne:</span>
+        <span className="product-details-subtitle">
+          {t("activeSubstances")}:
+        </span>
         {activeSubstances.map(activeSubstance => (
           <div className="product-details-items" key={activeSubstance}>
             {activeSubstance}
           </div>
         ))}
-        <span className="product-details-subtitle">Dawki:</span>
+        <span className="product-details-subtitle">{t("quantities")}:</span>
         {quantities.map(quantity => (
           <div className="product-details-items" key={quantity}>
             {quantity}
           </div>
         ))}
-        <span className="product-details-subtitle">Typy:</span>
+        <span className="product-details-subtitle">{t("types")}:</span>
         {types.map(type => (
           <div className="product-details-items" key={type}>
             {type}
           </div>
         ))}
-        <span className="product-details-subtitle">Producenci:</span>
+        <span className="product-details-subtitle">{t("companies")}:</span>
         {companies.map(company => (
           <div className="product-details-items" key={company}>
             {company}
