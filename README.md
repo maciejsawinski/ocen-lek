@@ -1,8 +1,14 @@
-# oceń lek
+# ocen-lek
 
 A simple app where you can find reviews for medications and add your own.
 
-## Technologies used:
+## Screenshots
+
+![Search Page](./images/search-page.jpg)
+![Product Details](./images/product-details.jpg)
+![Product Reviews](./images/product-reviews.jpg)
+
+## Technologies used
 
 - JavaScript
 - React
@@ -42,4 +48,14 @@ To start the app:
 
 ```
 yarn start
+```
+
+This project uses Google's Firebase Firestore and Aloglia search engine so you'll need to provide a `.env` file with the following variables:
+
+```
+REACT_APP_FIREBASE_API_KEY=xxx
+REACT_APP_FIREBASE_AUTH_DOMAIN=xxx
+REACT_APP_FIREBASE_PROJECT_ID=xxx
+REACT_APP_ALGOLIA_APP_ID=xxx
+REACT_APP_ALGOLIA_SEARCH_APP_ID=xxx
 ```
