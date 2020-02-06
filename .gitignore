@@ -23,3 +23,5 @@ yarn-error.log*
 # config
 src/config/firebase.js
 src/config/algolia.js
+.firebase/
+.env
