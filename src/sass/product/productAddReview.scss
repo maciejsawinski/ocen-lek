@@ -40,7 +40,7 @@
       align-items: center;
 
       .product-add-review-elements-rating-list {
-        flex-grow: 1;
+        flex: 1 1 30%;
         display: flex;
         flex-direction: column;
 
@@ -56,7 +56,7 @@
 
       .product-add-review-elements-inputs {
         height: 20rem;
-        flex-grow: 4;
+        flex: 1 1 70%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -70,31 +70,34 @@
           border-radius: 0.2rem;
           padding: 1rem;
           outline: none;
-          border: 1px solid $backgroundColor;
+          border: 0.2rem solid $backgroundColor;
           background-color: $backgroundSecondaryColor;
+          font-family: "Montserrat", sans-serif;
+          transition: 0.2s ease-in;
 
           &:focus {
-            border: 1px solid $secondaryColor;
+            border: 0.2rem solid $secondaryColor;
           }
         }
 
         input {
           @include boxShadow;
-          width: 50%;
           box-sizing: border-box;
           border-radius: 0.2rem;
           padding: 0.25rem 1rem;
           outline: none;
-          border: 1px solid $backgroundColor;
+          border: 0.2rem solid $backgroundColor;
           background-color: $backgroundSecondaryColor;
+          font-family: "Montserrat", sans-serif;
+          transition: 0.2s ease-in;
 
           &:focus {
-            border: 1px solid $secondaryColor;
+            border: 0.2rem solid $secondaryColor;
           }
         }
 
         .product-add-review-elements-inputs-error {
-          border: 1px solid red;
+          border: 0.2rem solid red;
         }
       }
     }
@@ -138,6 +141,10 @@
       textarea,
       input {
         width: 95%;
+      }
+
+      textarea {
+        margin-bottom: 1rem;
       }
     }
   }

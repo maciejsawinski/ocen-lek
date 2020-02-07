@@ -4,6 +4,7 @@
   .product-details-error {
     text-align: center;
     font-weight: normal;
+    color: $primaryColor;
 
     &::after {
       font-family: "iconmonstr-iconic-font";

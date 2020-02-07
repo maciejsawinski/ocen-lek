@@ -3,11 +3,12 @@
   display: flex;
   border-radius: 0.2rem;
   padding: 0.5rem 1rem;
-  border: 1px solid $backgroundColor;
+  border: 0.2rem solid $backgroundColor;
   background-color: $backgroundSecondaryColor;
+  transition: 0.2s ease-in;
 
   &:focus-within {
-    border: 1px solid $secondaryColor;
+    border: 0.2rem solid $secondaryColor;
   }
 
   .ais-SearchBox-reset {
@@ -33,6 +34,7 @@
 
 .search-error {
   margin-top: 2rem;
+  color: $primaryColor;
 
   &::after {
     font-family: "iconmonstr-iconic-font";
@@ -42,6 +44,7 @@
 
 .search-nomatches {
   margin-top: 2rem;
+  color: $primaryColor;
 
   &::after {
     font-family: "iconmonstr-iconic-font";

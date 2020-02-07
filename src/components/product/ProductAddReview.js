@@ -195,19 +195,27 @@ class ProductAddReview extends Component {
               </div>
             </div>
             <div className="product-add-review-elements-inputs">
+              <label className="sr-only" htmlFor="text">
+                {t("textAreaPlaceholder")}
+              </label>
               <textarea
                 className={textareaErrorClassName}
                 value={text}
                 onChange={e => this.onInputChange(e)}
+                id="text"
                 name="text"
                 placeholder={`${t("textAreaPlaceholder")}...`}
                 maxLength="500"
               />
+              <label className="sr-only" htmlFor="userName">
+                {t("inputPlaceholder")}
+              </label>
               <input
                 className={inputErrorClassName}
                 value={userName}
                 onChange={e => this.onInputChange(e)}
                 type="text"
+                id="userName"
                 name="userName"
                 placeholder={t("inputPlaceholder")}
                 maxLength="30"
