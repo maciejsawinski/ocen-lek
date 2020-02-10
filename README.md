@@ -59,3 +59,11 @@ REACT_APP_FIREBASE_PROJECT_ID=xxx
 REACT_APP_ALGOLIA_APP_ID=xxx
 REACT_APP_ALGOLIA_SEARCH_APP_ID=xxx
 ```
+
+## Data
+
+Medications data used in the project https://dane.gov.pl/dataset/397,rejestr-produktow-leczniczych
+
+## Contact
+
+Created by Maciej Sawiński macsawinski@gmail.com
